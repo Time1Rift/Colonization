@@ -10,19 +10,15 @@ public class Minion : MonoBehaviour
     private MinionCollector _minionCollector;
     private Vector3 _targetBase;
 
-    public bool IsFree { get; private set; }
-
-    private void Awake()
-    {
-        IsFree = true;
-        _targetBase = transform.GetComponentInParent<Base>().transform.position;
-        _minionMover = GetComponent<MinionMover>();
-        _minionCollector = GetComponent<MinionCollector>();
-    }
+    public bool IsFree { get; private set; } = true;
 
     public void OnEnable()
     {
         _minionCollector.ResourceCollected += AssignResourceBase;
+
+        _targetBase = transform.GetComponentInParent<Base>().transform.position;
+        _minionMover = GetComponent<MinionMover>();
+        _minionCollector = GetComponent<MinionCollector>();
     }
 
     public void OnDisable()

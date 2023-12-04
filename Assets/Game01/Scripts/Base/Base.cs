@@ -22,13 +22,11 @@ public class Base : MonoBehaviour
     private void OnEnable()
     {
         _baseWallet.MinionCreated += CreateMinion;
-        //_baseWallet.BaseCreated += ;
     }
 
     private void OnDisable()
     {
         _baseWallet.MinionCreated -= CreateMinion;
-        //_baseWallet.BaseCreated -= ;
     }
 
     private void Update()
@@ -36,9 +34,7 @@ public class Base : MonoBehaviour
         for (int i = 0; i < _minions.Count; i++)
         {
             if (_minions[i].IsFree && _scanner.TryHereResources())
-            {
                 _minions[i].GoAfterResource(_scanner.GetResource());
-            }
         }
     }
 

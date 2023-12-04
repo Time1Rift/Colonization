@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5677794577158792953}
   - component: {fileID: 5000265896453109676}
   - component: {fileID: 3270722909865720283}
-  - component: {fileID: 5081985464962938788}
+  - component: {fileID: 869236504473144288}
   m_Layer: 0
   m_Name: minion
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5753818096366274790
 MeshFilter:
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffc4d7890aa44148947cd78f0164da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5081985464962938788
+--- !u!114 &869236504473144288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
