@@ -3,32 +3,34 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(MinionMover)), RequireComponent(typeof(MinionCollector))]
+[RequireComponent(typeof(MinionMover))]
+[RequireComponent(typeof(MinionCollector))]
+[RequireComponent(typeof(MinionBuilder))]
 public class Minion : MonoBehaviour
 {
     private MinionMover _minionMover;
     private MinionCollector _minionCollector;
+    private MinionBuilder _minionBuilder;
     private Vector3 _targetBase;
 
     public bool IsFree { get; private set; } = true;
 
-    public void OnEnable()
-    {
-        _minionCollector.ResourceCollected += AssignResourceBase;
-
-        _targetBase = transform.GetComponentInParent<Base>().transform.position;
-        _minionMover = GetComponent<MinionMover>();
-        _minionCollector = GetComponent<MinionCollector>();
-    }
-
-    public void OnDisable()
+    private void OnDisable()
     {
         _minionCollector.ResourceCollected -= AssignResourceBase;
+        _minionBuilder.Free -= GetFree;
     }
 
-    public void SubmitResource()
+    public void CreateBase(Flag flag)
     {
-        Destroy(transform.GetChild(0).gameObject);
+        IsFree = false;
+        _minionBuilder.SetTargetFlag(flag);
+        _minionMover.SetTargetPosition(flag.transform.position);
+    }    
+
+    public void SubmitResource(Resource resource)
+    {
+        Destroy(resource.gameObject);
         IsFree = true;
     }
 
@@ -37,6 +39,22 @@ public class Minion : MonoBehaviour
         IsFree = false;
         _minionCollector.SetTargetResource(resource);
         _minionMover.SetTargetPosition(resource.transform.position);
+    }
+
+    public void SetTargetPositionBase()
+    {
+        _targetBase = transform.GetComponentInParent<Base>().transform.position;
+        _minionMover = GetComponent<MinionMover>();
+        _minionCollector = GetComponent<MinionCollector>();
+        _minionBuilder = GetComponent<MinionBuilder>();
+
+        _minionCollector.ResourceCollected += AssignResourceBase;
+        _minionBuilder.Free += GetFree;
+    }
+
+    private void GetFree()
+    {
+        IsFree = true;
     }
 
     private void AssignResourceBase()

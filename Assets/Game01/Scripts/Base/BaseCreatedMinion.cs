@@ -10,6 +10,7 @@ public class BaseCreatedMinion : MonoBehaviour
     {
         Minion minion = Instantiate(_minionPrefab, transform.position, Quaternion.identity);
         minion.transform.parent = transform;
+        minion.SetTargetPositionBase();
         return minion;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseResourceCollector : MonoBehaviour
+public class BaseCollector : MonoBehaviour
 {
     public event Action Collected;
 
@@ -11,9 +11,11 @@ public class BaseResourceCollector : MonoBehaviour
     {
         if (other.TryGetComponent(out Minion minion))
         {
-            if (minion.transform.childCount > 0)
+            Resource resource = minion.GetComponentInChildren<Resource>();
+
+            if (resource != null)
             {
-                minion.SubmitResource();
+                minion.SubmitResource(resource);
                 Collected?.Invoke();
             }            
         }
