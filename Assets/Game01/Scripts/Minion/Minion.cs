@@ -54,6 +54,7 @@ public class Minion : MonoBehaviour
 
     private void GetFree()
     {
+        SetTargetPositionBase();
         IsFree = true;
     }
 

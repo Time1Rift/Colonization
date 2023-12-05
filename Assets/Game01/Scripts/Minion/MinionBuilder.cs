@@ -22,7 +22,7 @@ public class MinionBuilder : MonoBehaviour
             newBase.ClearMinions();
             newBase.transform.parent = transform.GetComponentInParent<Base>().GetComponentInParent<Scanner>().transform;
             newBase.FillFields();
-
+                        
             transform.parent = newBase.transform;
             newBase.AddMinion(transform.GetComponent<Minion>());
 

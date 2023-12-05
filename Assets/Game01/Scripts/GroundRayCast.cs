@@ -43,13 +43,13 @@ public class GroundRayCast : MonoBehaviour
     private void SetTargetPositionBuilding()
     {
         int exception = -1;
-        //int constructionThreshold = 1;
+        int constructionThreshold = 1;
 
         if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
         {
             _index = _bases.IndexOf(hit.transform);
 
-            if (_index != exception && _isBase == false)// && _bases[_index].childCount > constructionThreshold)
+            if (_index != exception && _isBase == false && _bases[_index].childCount > constructionThreshold)
             {
                 _isBase = true;
                 _index = _bases.IndexOf(hit.transform);

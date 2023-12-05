@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3281211145807677094}
   - component: {fileID: 7147564186664877381}
   - component: {fileID: 4658874414604085077}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2767587872791658878}
   - component: {fileID: 7911842621144286288}
   - component: {fileID: 4930437766714916124}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpawnResorces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resourcePrefab: {fileID: 5174975086370275742, guid: 5ae8ee4fa00a55f408e3c016cb028d2c, type: 3}
-  _timeBetweenSpawn: 2
+  _timeBetweenSpawn: 1
 --- !u!1001 &3615077792858122381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,6 +199,10 @@ PrefabInstance:
     - target: {fileID: 3323898990239699123, guid: fa64f0aad363e9d42add8b95738f7a84, type: 3}
       propertyPath: m_Name
       value: base
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323898990239699123, guid: fa64f0aad363e9d42add8b95738f7a84, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5593231603300864981, guid: fa64f0aad363e9d42add8b95738f7a84, type: 3}
       propertyPath: m_RootOrder

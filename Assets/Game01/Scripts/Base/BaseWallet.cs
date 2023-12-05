@@ -9,7 +9,7 @@ public class BaseWallet : MonoBehaviour
 {
     private int _countPoints;
     private int _countPointsCreateMinion = 3;
-    private int _countPointsCreateBase = 2;
+    private int _countPointsCreateBase = 5;
     private bool _inBaseBeingBuilt = false;
 
     private BaseCollector _baseResourceCollector;
