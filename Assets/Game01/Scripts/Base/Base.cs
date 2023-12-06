@@ -8,7 +8,7 @@ using UnityEngine;
 public class Base : MonoBehaviour
 {
     private Scanner _scanner;
-    private List<Minion> _minions = new List<Minion>();
+    private Queue<Minion> _minions = new Queue<Minion>();
     private BaseCreatedMinion _baseCreatedMinion;
     private BaseWallet _baseWallet;
     private BaseBuilder _baseBuilder;
@@ -37,36 +37,31 @@ public class Base : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < _minions.Count; i++)
+        while (_minions.Count > 0 && _scanner.TryHereResources())
         {
-            if (_minions[i].IsFree && _scanner.TryHereResources())
+            if (_isBaseBuilding)
             {
-                if (_isBaseBuilding)
-                {
-                    Minion minion = _minions[i];
-                    _minions.Remove(_minions[i]);
-                    Build(minion);
-                    _isBaseBuilding = false;
-                }
-                else
-                {
-                    _minions[i].GoAfterResource(_scanner.GetResource());
-                }
+                Minion minion = _minions.Dequeue();
+                Build(minion);
+                _isBaseBuilding = false;
+            }
+            else
+            {
+                Minion minion = _minions.Dequeue();
+                minion.GoAfterResource(_scanner.GetResource());
             }
         }
     }
 
     public void AddMinion(Minion minion)
     {
-        _minions.Add(minion);
+        _minions.Enqueue(minion);
     }
 
     public void ClearMinions()
     {
-        for (int i = 0; i < _minions.Count; i++)
-        {
-            Destroy(_minions[i].gameObject);
-        }
+        foreach (var minion in _minions)
+            Destroy(minion.gameObject);
     }
 
     public void FillFields()
@@ -86,6 +81,6 @@ public class Base : MonoBehaviour
 
     private void CreateMinion()
     {
-        _minions.Add(_baseCreatedMinion.Create());
+        _minions.Enqueue(_baseCreatedMinion.Create());
     }
 }

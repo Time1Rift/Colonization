@@ -13,8 +13,6 @@ public class Minion : MonoBehaviour
     private MinionBuilder _minionBuilder;
     private Vector3 _targetBase;
 
-    public bool IsFree { get; private set; } = true;
-
     private void OnDisable()
     {
         _minionCollector.ResourceCollected -= AssignResourceBase;
@@ -23,7 +21,6 @@ public class Minion : MonoBehaviour
 
     public void CreateBase(Flag flag)
     {
-        IsFree = false;
         _minionBuilder.SetTargetFlag(flag);
         _minionMover.SetTargetPosition(flag.transform.position);
     }    
@@ -31,12 +28,10 @@ public class Minion : MonoBehaviour
     public void SubmitResource(Resource resource)
     {
         Destroy(resource.gameObject);
-        IsFree = true;
     }
 
     public void GoAfterResource(Resource resource)
     {
-        IsFree = false;
         _minionCollector.SetTargetResource(resource);
         _minionMover.SetTargetPosition(resource.transform.position);
     }
@@ -55,7 +50,6 @@ public class Minion : MonoBehaviour
     private void GetFree()
     {
         SetTargetPositionBase();
-        IsFree = true;
     }
 
     private void AssignResourceBase()
